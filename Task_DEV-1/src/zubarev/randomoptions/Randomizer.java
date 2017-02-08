@@ -2,16 +2,17 @@ package src.zubarev.randomoptions;
 
 import java.util.*;
 /**
- * This class take RAND_NUMBER options from given list.
+ * This class take a number options from given list.
  */
 public class Randomizer {
   public static final int RAND_NUMBER = 3;	
   
   /**
    * Take RAND_NUMBER options from optionList.
-   * 
-   * @param List<String> .
-   * @return Give list with random options to method printOptionsList(List<String> optionList). 
+   * Give list with random options to method
+   *
+   * Params String list .
+   * Returns  printOptionsList(List<String> optionList). 
    */	
   public static void getRandomOptions(List<String> optionList) {
     List<String> randomOptionsList = new ArrayList<String>();

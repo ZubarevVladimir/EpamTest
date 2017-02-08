@@ -10,11 +10,10 @@ public class Checker {
   
   /**
    * Checks entered options, this means next correcting rules:
-   * 1. First symbol '-'. 
+   * 1. First symbol '-' or '/'. 
    * 2. Other symbols are lowercase Latin letters. 
    *
-   * @param Get string array.  
-   * @return Give string list to method getRandomOptions(List<String> str).
+   * Params Get string array.   
    */	
   public static void checkOptions(String[] args) {
     List<String> optionList = new ArrayList<String>();

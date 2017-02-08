@@ -9,10 +9,9 @@ public class Controler {
  
   /**
    * Method check length entered string.
-   * If length 0, method stop programm and seng Error message.
+   * Return nothing if length not 0, Error message and stoping programm if 0.
    *
    * @param Get string array.
-   * @return Nothing if length not 0, Error message and stoping programm if 0.
    */	
   public static void checkNullLength(String[] args) {
     if (args.length != 0) {
@@ -25,8 +24,8 @@ public class Controler {
   /**
    * Check option's like rule: symbols are lowercase Latin letters. 
    *
-   * @param Get Char array.
-   * @return Boolen variable True if option answer rule, False if no.
+   * Params Get Char array.
+   * Returns Boolen variable True if option answer rule, False if no.
    */	
   public static boolean checkOptionName(char[] optionName) {
     boolean status = true;
@@ -38,14 +37,14 @@ public class Controler {
         } else {
         }
       }		
-  return valid;
+  return status;
   }
 
   /**
    * Compare real size with necessary size string. 
+   * Return Nothing if real size is more than necessary , Error message if less.
    *
-   * @param Get real size.
-   * @return Nothing if real size is more than necessary , Error message if less.
+   * Params Get real list-size.
    */ 
   public static void checkSizeOptionsList(int size) {
     if (Randomizer.RAND_NUMBER <= size) {
