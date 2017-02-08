@@ -38,7 +38,7 @@ public class Controler {
         } else {
         }
       }		
-  return valid;
+  return status;
   }
 
   /**
