@@ -13,8 +13,8 @@ public class Printer {
  * @param  Give list optionList with output information. 
  */	
   public static void printOptionsList(List<String> optionList) {
-	for (String str : optionList) {
+    for (String str : optionList) {
       System.out.println(str);
-	}	
+    }	
   }
 }

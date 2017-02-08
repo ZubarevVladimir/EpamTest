@@ -2,7 +2,7 @@ package src.zubarev.randomoptions;
 
 import java.io.*;
  
- /**
+/**
  * This class is entry point to work.
  */
 public class RandomOptions {
