@@ -8,9 +8,9 @@ import java.util.*;
  */
 public class EntryPoint {
   public static void main(String[] args) {
-  Checker check = new Checker();
-  String expression = check.inputArgs(args);
+  Taker take = new Taker();
+  String expression = take.inputArgs(args);
   ArithmeticExpression arphmeticalExpression = new ArithmeticExpression(expression);
   arphmeticalExpression.printExpression();
-  }  
+  } 
 }
