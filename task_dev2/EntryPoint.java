@@ -1,5 +1,7 @@
 package task_dev2;
 
+import task_dev2.Operations.*;
+
 import java.io.*;
 import java.util.*;
  

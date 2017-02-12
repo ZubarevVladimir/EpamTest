@@ -9,11 +9,10 @@ import java.util.*;
 public class Taker {
 	
   /**
-  * Compare what user enter in comand line and, if user enter nothing
+  * Compare what user input in comand line and, if user enter nothing,
   * request input expression. Also this method delete spaces between numbers and operators
   * and add given string in List
-  * Return expression without spaces
-  * @param args - array, which  user input in comand line
+  * @param args - array, giving in comand line
   * @return List - list contain expression without spaces
   */
   public String inputArgs(String[] args) {

@@ -1,5 +1,7 @@
 package task_dev2;
 
+import task_dev2.Operations.*;
+
 import java.io.*;
 import java.util.*;
 import java.math.*;
@@ -15,8 +17,7 @@ public class Calculator {
   private final String MULTIPLY = "*";
 
   /**
-   * Set variable solve used other private method for it
-   * Return variable which contain solve
+   * Set variable solve 
    * @param expression - string contains expression without spaces 
    * @return double - solve for given expression
    */
@@ -28,9 +29,7 @@ public class Calculator {
   }
   
   /**
-   * Split string expression on elementary parts (number/operation) and add this operation in list,
-   * also includes checking which contains class Checker.
-   * Return list of elementary parts
+   * Split string expression on elementary parts (number/operation) and add this operation in list
    * @param expression - string contains expression without spaces
    * @return List - list of elementary parts
    */
@@ -60,7 +59,6 @@ public class Calculator {
 
   /**
    * Set operation priority for method changeSolve and get solve
-   * Return received solve
    * @param splitExpression - list of elementary parts (number/operation)
    * @return double - solve according to given list
    */
@@ -82,19 +80,18 @@ public class Calculator {
 
   /**
    * Change given list according to operation priority 
-   * Return list without priority operations
    * @param splitExpression - list of elementary parts (number/operation)
    * @param operationOne - first priority operation
    * @param operationTwo - second priority operation
    * @return List - changed expression without priority operation
    */ 
   private List changeSolveList(List<String> splitExpression, String operationOne, String operationTwo) {
-    int i = 0;
+    int i = 1;
     while (i < splitExpression.size()) {
       if ((splitExpression.get(i)).equals(operationOne) || (splitExpression.get(i)).equals(operationTwo)) { // First operations priority
         splitExpression.set(i - 1, makerOperation(splitExpression.get(i - 1), 
             splitExpression.remove(i + 1), splitExpression.remove(i)));
-        i -= 1;
+        i -= 1 ;
       }
       i++;
     }
@@ -103,7 +100,6 @@ public class Calculator {
   
   /**
    * Make elementary operations ("+", "-", "*", "/") with given numbers
-   * Return result this operation
    * @param numberOne - first number for elementary opertion
    * @param numberTwo - second number for elementary operation
    * @param operation - string operation whith need make
@@ -116,19 +112,23 @@ public class Calculator {
     String stringNumber = "";
     switch (operation) {
       case (MULTIPLY):
-        doubleNumber = doubleNumberOne.multiply(doubleNumberTwo);
+        Multiplication multiply = new Multiplication();
+        doubleNumber = multiply.solve(doubleNumberOne, doubleNumberTwo);
         stringNumber = doubleNumber.toString();
         break;
       case (DEVIDE):
-        doubleNumber = doubleNumberOne.divide(doubleNumberTwo, 5, BigDecimal.ROUND_HALF_UP);
+        Division divide = new Division();
+        doubleNumber = divide.solve(doubleNumberOne, doubleNumberTwo);
         stringNumber = doubleNumber.toString();
         break;
       case (PLUS):
-        doubleNumber = doubleNumberOne.add(doubleNumberTwo);
+        Additation add = new Additation();
+        doubleNumber = add.solve(doubleNumberOne, doubleNumberTwo);
         stringNumber = doubleNumber.toString();
         break;
       case (MINUS):
-        doubleNumber = doubleNumberOne.subtract(doubleNumberTwo);
+        Subtraction subtract = new Subtraction();
+        doubleNumber = subtract.solve(doubleNumberOne, doubleNumberTwo);
         stringNumber = doubleNumber.toString();
         break;
     }

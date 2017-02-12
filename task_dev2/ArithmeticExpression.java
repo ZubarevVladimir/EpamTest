@@ -1,5 +1,7 @@
 package task_dev2;
 
+
+
 import java.io.*;
 import java.util.*;
 import java.math.*;
@@ -44,7 +46,6 @@ public class ArithmeticExpression {
 
   /**
    * Sets variable solve and uses class Calculator for it 
-   * Return variable which contain solve
    * @param expression - string contains expression without spaces 
    */
   private void setSolve(String expression) {
