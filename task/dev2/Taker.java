@@ -1,16 +1,15 @@
-package task_dev2;
+package task.dev2;
 
 import java.io.*;
 import java.util.*;
 
 /**
- * This class input parametres in programm, or modify in workable type
+ * This class input parametres in programm, or modify in workable type.
  */
 public class Taker {
-	
+  
   /**
-  * Compare what user input in comand line and, if user enter nothing,
-  * request input expression. Also this method delete spaces between numbers and operators
+  * Give string in console or combine array in string.
   * and add given string in List
   * @param args - array, giving in comand line
   * @return List - list contain expression without spaces
