@@ -8,7 +8,6 @@ import java.math.*;
  * Contains information about arithmetic expression.
  */
 public class ArithmeticExpression {
-
   private String expression;
   private double solve;
   
@@ -17,29 +16,29 @@ public class ArithmeticExpression {
   */
   ArithmeticExpression(String expression) {
     this.expression = expression;
-    setSolve(expression);
+    solve = 0;
   }
 
   /**
    * Get variable expression.
-   * @return String - string expression
+   * @return String - string expression.
    */  
   public String getExpression() {
     return this.expression;
   }
   
   /**
-   * Get variable expression.
-   * @return double - solve for our expression
+   * Get variable solve.
+   * @return double - solve for our exemplar.
    */
   public double getSolve() {
     return this.solve;
   }
   
   /**
-   * Print information variables.
+   * Print variables {expression} and {solve}.
    */
-  public void printExpression() {
+  public void printVariables() {
     System.out.println("Expression: " + getExpression());
     System.out.println("Solve: " + getSolve());
   }
@@ -50,15 +49,13 @@ public class ArithmeticExpression {
    */
   public void setExpression(String expression) {
     this.expression = expression;
-    setSolve(expression);
   }
   
   /**
    * Sets variable solve and uses class Calculator for it.
    * @param expression - string contains expression without spaces.
    */
-  private void setSolve(String expression) {
-    Calculator calc = new Calculator();
-    this.solve = calc.calculateSolve(expression);
+  public void setSolve(double outerSolve) {
+    this.solve = outerSolve;
   }
 }

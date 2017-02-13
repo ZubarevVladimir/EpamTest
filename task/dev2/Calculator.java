@@ -10,12 +10,13 @@ import java.math.*;
  * Does calculations.
  */
 public class Calculator {
-  
   private final String PLUS = "+";
   private final String MINUS = "-";
   private final String DEVIDE = "/";
   private final String MULTIPLY = "*";
   private final int MIN_LIST_SIZE = 3;
+  private final String UC_EXP = "E";
+  private final String LC_EXP = "e";
   
   /**
    * Calculate solve for given expression.
@@ -39,12 +40,12 @@ public class Calculator {
     int flag = 0;
     for (int i = 1; i < expression.length(); i++) {
       String compare = expression.substring(i, i + 1);
-      if ((compare.equals("e")) || (compare.equals("E"))) {
+      if ((compare.equals(LC_EXP)) || (compare.equals(UC_EXP))) {
         i++;
       }
       if ((compare.equals(PLUS)) || (compare.equals(MINUS)) || // Search operation.
           (compare.equals(MULTIPLY)) || (compare.equals(DEVIDE))) {
-        listExpression.add(expression.substring(flag, i));  // Add number before this operator
+        listExpression.add(expression.substring(flag, i)); // Add number before this operator
         listExpression.add(expression.substring(i, i + 1)); // and this operation in list.
         i++;
         flag = i;
@@ -96,7 +97,7 @@ public class Calculator {
       }
       i++;
     }
-  return splitExpression;
+    return splitExpression;
   }
   
   /**
