@@ -17,10 +17,8 @@ public class Spliter {
   public List splitStringIntoWords(String text) {
     List<String> splitWordsList = new ArrayList<>();
     for (String word : (text.split("[\\s,.!?]+"))) {
-      // If number split text use: ("[\\s,.!?[0-9]]+")
       if (word.length() != 0) {
-        splitWordsList.add(word.replaceAll("_", ""));
-        // If numbers unit words how "_" in request: ("[\\d_]+", ""));
+        splitWordsList.add(word.replaceAll("[\\d_]+", ""));
       }
     }
     return splitWordsList;
