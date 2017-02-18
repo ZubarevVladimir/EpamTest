@@ -1,6 +1,7 @@
 package dev4.PrintInformation;
 
 import dev4.GetInformation.GetInformation;
+import dev4.GetInformation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class PrintInformation {
         .entrySet()) {
       System.out
           .println(
-              "Frequancy for pair of letters: " + entry.getKey() + " -> "
+              "Frequency for sequence " + entry.getKey() + " -> "
                   + entry.getValue() / (getter
                   .getTotalNumber(splitWordList)));
     }
@@ -43,8 +44,9 @@ public class PrintInformation {
    * @param splitWordList - list, contains words.
    */
   private void printNumberWordsMore(List<String> splitWordList) {
-    GetInformation geter = new GetInformation();
-    System.out.println("Quantity words, which length more then " + geter.WORD_LENGTH + ": " + geter
-        .getNumberWords(splitWordList));
+    GetInformation getter = new GetInformation();
+    System.out
+        .println("Quantity words, which length more then " + getter.WORD_LENGTH + ": " + getter
+            .getNumberWords(splitWordList));
   }
 }

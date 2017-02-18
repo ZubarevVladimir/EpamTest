@@ -44,6 +44,7 @@ public class Main {
           System.out.println("Enter piece of text: ");
           text = adder.addText(inputer.enterText(), text);
           splitWordsList = spliter.splitStringIntoWords(text);
+          System.out.println(splitWordsList);
           printer.printInformation(splitWordsList);
         } else {
           System.out.println("You inter incorrect comand");

@@ -18,10 +18,10 @@ class FrequencyRepetition {
   Map getFrequencyRepetition(List<String> splitWordList) {
     Map<String, Integer> frequencyMap = new HashMap<>();
     for (String word : splitWordList) {
-      for (int j = 1; j < word.length(); j++) {
-        String keyMap = word.substring(j - 1, j + 1).toLowerCase();
+      for (int j = GetInformation.NUMBER_SYMBOLS; j <= word.length(); j++) {
+        String keyMap = word.substring(j - GetInformation.NUMBER_SYMBOLS, j).toLowerCase();
         char[] key = keyMap.toCharArray();
-        if ((((key[0] <= 'z') && (key[0] >= 'a')) && (((key[1] <= 'z') && (key[1] >= 'a'))))) {
+        if (areLetters(key)) {
           if (frequencyMap.containsKey(keyMap)) {
             frequencyMap.put(keyMap, frequencyMap.get(keyMap) + 1);
           } else {
@@ -31,5 +31,14 @@ class FrequencyRepetition {
       }
     }
     return frequencyMap;
+  }
+
+  private boolean areLetters(char[] key) {
+    for (char symbol : key) {
+      if (!((symbol <= 'z') && (symbol >= 'a'))) {
+        return false;
+      }
+    }
+    return true;
   }
 }

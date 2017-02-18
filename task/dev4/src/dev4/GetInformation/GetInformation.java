@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class GetInformation {
 
+  public static final int NUMBER_SYMBOLS = 2;
   public final int WORD_LENGTH = 5;
 
   /**
@@ -46,7 +47,7 @@ public class GetInformation {
   public double getTotalNumber(List<String> splitWordsList) {
     double totalLength = 0;
     for (String word : splitWordsList) {
-      totalLength += (word.length()) - 1;
+      totalLength += ((word.length()) + 1) - GetInformation.NUMBER_SYMBOLS;
     }
     return totalLength;
   }
