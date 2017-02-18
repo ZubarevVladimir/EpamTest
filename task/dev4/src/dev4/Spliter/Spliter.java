@@ -16,9 +16,9 @@ public class Spliter {
    */
   public List splitStringIntoWords(String text) {
     List<String> splitWordsList = new ArrayList<>();
-    for (String word : (text.split("[\\s,.!?]+"))) {
+    for (String word : (text.split("[\\s,.!?:;'\"]+"))) {
       if (word.length() != 0) {
-        splitWordsList.add(word.replaceAll("[\\d_]+", ""));
+        splitWordsList.add(word.replaceAll("[\\W\\d_]+", ""));
       }
     }
     return splitWordsList;
