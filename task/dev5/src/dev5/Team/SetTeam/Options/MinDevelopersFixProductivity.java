@@ -1,18 +1,23 @@
 package dev5.Team.SetTeam.Options;
 
 import dev5.Team.Team.Developers.Developer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Created by Владимир on 20.02.2017.
+ * Contains methods for pick team with minimal number developers without some developers
+ * qualification in fixed productivity.
  */
 public class MinDevelopersFixProductivity {
 
   static final String USELESS_QUALIFICATION = "junior";
 
+  /**
+   * Pick optimal team, which has got minimal number developers according to given productivity.
+   *
+   * @param productivity value, which need get in accordance with condition.
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return Map - contains team according to option.
+   */
   public Map<Developer, Integer> setTeam(int productivity, List<Developer> teamList) {
     Map<Developer, Integer> teamMap = new HashMap<>();
     teamList = deleteDeveloper(teamList, USELESS_QUALIFICATION);
@@ -51,6 +56,13 @@ public class MinDevelopersFixProductivity {
     return teamMap;
   }
 
+  /**
+   * Delete given developers qualification in given list.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @param qualification deleted qualification.
+   * @return List list without developers with given qualification.
+   */
   private List<Developer> deleteDeveloper(List<Developer> teamList, String qualification) {
     for (int i = teamList.size() - 1; i >= 0; i--) {
       if ((teamList.get(i).getQualification().toLowerCase().equals(qualification.toLowerCase()))) {
@@ -60,6 +72,13 @@ public class MinDevelopersFixProductivity {
     return teamList;
   }
 
+  /**
+   * Search developer, which has the best and acceptable productivity.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @param productivity value for compare. Search developer with productivity more than it value.
+   * @return int - index searched developer in given list.
+   */
   private int searchNecessaryDeveloper(List<Developer> teamList, int productivity) {
     List<Double> priceIndexList = new ArrayList<>();
     for (Developer developer : teamList) {
@@ -78,6 +97,12 @@ public class MinDevelopersFixProductivity {
     return indexDevelopers;
   }
 
+  /**
+   * Search minimal developers productivity in given list.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return int minimal developers productivity in given list.
+   */
   private int searchMinProductivity(List<Developer> teamList) {
     int minProductivity = teamList.get(1).getProductivity();
     for (Developer developer : teamList) {

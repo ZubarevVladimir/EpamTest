@@ -4,10 +4,18 @@ import dev5.Team.Team.Developers.Developer;
 import java.util.*;
 
 /**
- * Created by Владимир on 21.02.2017.
+ * Contains linking method.
  */
 public class GetTeam {
-  public Map<Developer, Integer> getNecessaryTeam(String option, List<Developer> teamList){
+
+  /**
+   * Call calculates methods for pick team according to given option.
+   *
+   * @param option String, which contains necessary option for pick team.
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return Map - contains developers with them optimal numbers according to given option.
+   */
+  public Map<Developer, Integer> getNecessaryTeam(String option, List<Developer> teamList) {
     Map<Developer, Integer> teamMap = new HashMap<>();
     MinSumFixProductivity setterTwo = new MinSumFixProductivity();
     MaxProductivityFixSum setterOne = new MaxProductivityFixSum();
@@ -54,5 +62,4 @@ public class GetTeam {
     }
     return teamMap;
   }
-
 }

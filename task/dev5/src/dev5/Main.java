@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Contains entry point method.
+ * Contains main.
  */
 public class Main {
 
@@ -15,7 +15,7 @@ public class Main {
    */
   public static void main(String[] args) {
     Map<Developer, Integer> teamMap;
-    for (; ;) {
+    for (; ; ) {
       System.out
           .println("Choose option for pick team:\n" + "1. Maximum productivity in current sum.\n"
               + "2. Minimum sum in current productivity.\n"

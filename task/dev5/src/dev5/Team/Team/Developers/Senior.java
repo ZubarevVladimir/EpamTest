@@ -1,7 +1,7 @@
 package dev5.Team.Team.Developers;
 
 /**
- * Created by Владимир on 21.02.2017.
+ * Senior-developer description
  */
 public class Senior extends Developer {
   private String qualification;
@@ -9,6 +9,12 @@ public class Senior extends Developer {
   private int salary;
   private double priceIndex;
 
+  /**
+   * Initialize variables for class Senior.
+   *
+   * @param productivity describes the ability to seniors work.
+   * @param salary price witch need to salary senior.
+   */
   public Senior(int productivity, int salary) {
     this.qualification = "Senior";
     this.productivity = productivity;

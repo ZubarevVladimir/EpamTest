@@ -1,14 +1,21 @@
 package dev5.Team.Team.Developers;
 
 /**
- * Created by Владимир on 21.02.2017.
+ * Juniors-developer description.
  */
-public class Junior extends Developer{
+public class Junior extends Developer {
+
   private String qualification;
   private int productivity;
   private int salary;
   private double priceIndex;
 
+  /**
+   * Initialize variables for class Junior.
+   *
+   * @param productivity describes the ability to juniors work.
+   * @param salary price witch need to salary junior.
+   */
   public Junior(int productivity, int salary) {
     this.qualification = "Junior";
     this.productivity = productivity;

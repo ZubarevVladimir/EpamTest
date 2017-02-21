@@ -1,21 +1,26 @@
 package dev5.Team.SetTeam.Options;
 
 import dev5.Team.Team.Developers.Developer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Created by Владимир on 20.02.2017.
+ * Contains methods for pick team with maximal productivity according to given sum.
  */
 public class MaxProductivityFixSum {
 
-  public Map<Developer, Integer> setTeam(double sum, List<Developer> teamList) {
+  /**
+   * Choose optimal team, which has got maximal productivity according to given money.
+   *
+   * @param sum maximal total developers salary.
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return Map - contains team according to option.
+   */
+  public Map<Developer, Integer> setTeam(int sum, List<Developer> teamList) {
     Map<Developer, Integer> teamMap = new HashMap<>();
-    int indexDevelopers = searchNecessaryDeveloper(teamList, sum);;
+    int indexDevelopers = searchNecessaryDeveloper(teamList, sum);
+    int minSalary = searchMinSalary(teamList);
     int developerCounter = 0;
-    while (sum > searchMinSalary(teamList)) {
+    while (sum > minSalary) {
       if (sum - teamList.get(indexDevelopers).getSalary() < 0) {
         teamMap.put(teamList.get(indexDevelopers), developerCounter);
         developerCounter = 0;
@@ -28,6 +33,13 @@ public class MaxProductivityFixSum {
     return teamMap;
   }
 
+  /**
+   * Search developer, which has the best price/productivity division and acceptable salary.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @param sum maximal salary for searched developers .
+   * @return int - index searched developer in given list.
+   */
   private int searchNecessaryDeveloper(List<Developer> teamList, double sum) {
     List<Double> priceIndexList = new ArrayList<>();
     for (Developer developer : teamList) {
@@ -43,8 +55,14 @@ public class MaxProductivityFixSum {
     return indexDevelopers;
   }
 
-  private double searchMinSalary(List<Developer> teamList) {
-    double minSalary = teamList.get(0).getSalary();
+  /**
+   * Search minimal developers salary in given list.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return int minimal developers salary in given list.
+   */
+  private int searchMinSalary(List<Developer> teamList) {
+    int minSalary = teamList.get(0).getSalary();
     for (Developer developer : teamList) {
       if (minSalary > developer.getSalary()) {
         minSalary = developer.getSalary();

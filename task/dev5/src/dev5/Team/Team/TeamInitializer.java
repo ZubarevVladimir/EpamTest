@@ -8,11 +8,16 @@ import dev5.Team.Team.Developers.Senior;
 import java.util.List;
 
 /**
- * Created by Владимир on 21.02.2017.
+ * Contains method for initialize developers list.
  */
 public class TeamInitializer {
 
-  public List<Developer> setTeamList(List<Developer> teamList) {
+  /**
+   * Add developers in given list.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   */
+  public void setTeamList(List<Developer> teamList) {
     Junior junior = new Junior(1, 500);
     Middle middle = new Middle(2, 980);
     Senior senior = new Senior(3, 1450);
@@ -21,7 +26,6 @@ public class TeamInitializer {
     teamList.add(middle);
     teamList.add(senior);
     teamList.add(lead);
-    return teamList;
   }
 }
 

@@ -1,16 +1,20 @@
 package dev5.Team.SetTeam.Options;
 
 import dev5.Team.Team.Developers.Developer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Created by Владимир on 20.02.2017.
+ * Contains methods for pick team with minimal total salary accroding to given sum.
  */
 public class MinSumFixProductivity {
 
+  /**
+   * Pick optimal team, which the cheapest according to given productivity.
+   *
+   * @param productivity value, which need get in accordance with condition.
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return Map - contains team according to option.
+   */
   public Map<Developer, Integer> setTeam(int productivity, List<Developer> teamList) {
     Map<Developer, Integer> teamMap = new HashMap<>();
     int indexDevelopers;
@@ -29,6 +33,13 @@ public class MinSumFixProductivity {
     return teamMap;
   }
 
+  /**
+   * Search developer, which has the best price/productivity division and acceptable productivity.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @param productivity value for compare. Search developer with productivity more than it value.
+   * @return int - index searched developer in given list.
+   */
   private int searchNecessaryDeveloper(List<Developer> teamList, double productivity) {
     List<Double> priceIndexList = new ArrayList<>();
     for (Developer developer : teamList) {
@@ -45,6 +56,12 @@ public class MinSumFixProductivity {
     return indexDevelopers;
   }
 
+  /**
+   * Search minimal developers productivity in given list.
+   *
+   * @param teamList list, which contains all developers with different qualifications.
+   * @return int minimal developers productivity in given list.
+   */
   private int searchMinProductivity(List<Developer> teamList) {
     int minProductivity = teamList.get(0).getProductivity();
     for (Developer developer : teamList) {

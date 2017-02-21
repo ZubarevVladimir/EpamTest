@@ -1,7 +1,7 @@
 package dev5.Team.Team.Developers;
 
 /**
- * Created by Владимир on 20.02.2017.
+ * Developers description.
  */
 public class Developer {
 
@@ -9,13 +9,6 @@ public class Developer {
   private int productivity;
   private int salary;
   private double priceIndex;
-
-  /*public Developer(String qualification, int productivity, int salary) {
-    this.qualification = qualification;
-    this.productivity = productivity;
-    this.salary = salary;
-    this.priceIndex = salary / productivity;
-  }*/
 
   public String getQualification() {
     return qualification;
