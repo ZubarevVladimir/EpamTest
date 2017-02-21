@@ -1,6 +1,10 @@
 package dev5.Team.SetTeam;
 
-import dev5.Team.Developers.*;
+import dev5.Team.SetTeam.Options.MaxProductivityFixSum;
+import dev5.Team.SetTeam.Options.MinDevelopersFixProductivity;
+import dev5.Team.SetTeam.Options.MinSumFixProductivity;
+import dev5.Team.Team.*;
+import dev5.Team.Team.Developers.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +19,8 @@ public class SetTeam {
   public Map<Developer, Integer> setTeam(String option) {
     List<Developer> teamList = new ArrayList<>();
     Map<Developer, Integer> teamMap = new HashMap<>();
-    initializeTeamList(teamList);
+    TeamInitializer initializer = new TeamInitializer();
+    initializer.setTeamList(teamList);
     MinSumFixProductivity setterTwo = new MinSumFixProductivity();
     MaxProductivityFixSum setterOne = new MaxProductivityFixSum();
     MinDevelopersFixProductivity setterThree = new MinDevelopersFixProductivity();
@@ -34,23 +39,5 @@ public class SetTeam {
       teamMap = setterThree.setTeam(productivity, teamList);
     }
     return teamMap;
-  }
-
-  private void printTeamList(List<Developer> teamList) {
-    for (Developer developer : teamList) {
-      developer.printDevelopersInfo();
-    }
-  }
-
-  private List<Developer> initializeTeamList(List<Developer> teamList) {
-    Developer junior = new Developer("Junior", 1, 500);
-    Developer middle = new Developer("Middle", 2, 980);
-    Developer senior = new Developer("Senior", 3, 1450);
-    Developer lead = new Developer("Lead", 4, 1900);
-    teamList.add(junior);
-    teamList.add(middle);
-    teamList.add(senior);
-    teamList.add(lead);
-    return teamList;
   }
 }
