@@ -1,17 +1,18 @@
 package com.github.zubarevladimir.Format;
 
+import com.github.zubarevladimir.Format.DateContainer.DateVariables;
 import java.util.*;
 
 /**
- * Description class FormatData.
+ * Contains formating methods.
  */
 public class FormatData {
 
   /**
-   * Description method doDateFormat.
+   * Formats date according to given format.
    *
-   * @param userDateFormat
-   * @return
+   * @param userDateFormat format entered by user.
+   * @return String - date in given format.
    */
   public String doDateFormat(String userDateFormat) {
     DateVariables data = new DateVariables();
@@ -21,11 +22,11 @@ public class FormatData {
   }
 
   /**
-   * Description method formatDateToUserFormat.
+   * Replace format abbreviation to date value.
    *
-   * @param dateMap
-   * @param userDateFormat
-   * @return
+   * @param dateMap date and time variables container.
+   * @param userDateFormat format entered by user.
+   * @return String - date in given format.
    */
   private String formatDateToUserFormat(Map<String, String> dateMap, String userDateFormat) {
     userDateFormat = userDateFormat.replaceAll("[f]", dateMap.get("f"));
