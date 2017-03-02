@@ -13,7 +13,7 @@ public class MatrixMultiply {
    * @param matrixOne array contains first matrix elements.
    * @param matrixTwo array contains second matrix elements.
    * @return double[][] - result matrix.
-   * @throws ArithmeticException throw if matrix can't multiply.
+   * @throws InvalidArgumentException throw if matrix can't multiply.
    */
   public double[][] doMultiply(double[][] matrixOne, double[][] matrixTwo)
       throws InvalidArgumentException {
