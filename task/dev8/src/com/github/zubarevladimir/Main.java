@@ -1,31 +1,33 @@
 package com.github.zubarevladimir;
 
-import java.util.Scanner;
+import com.github.zubarevladimir.Matrix.*;
+import com.sun.javaws.exceptions.InvalidArgumentException;
 
 public class Main {
 
   /**
    * Entry point method.
+   *
    * @param args not used parameter.
    */
   public static void main(String[] args) {
-    ReadMatrix reader = new ReadMatrix();
+    MatrixReader reader = new MatrixReader();
     MatrixMultiply multiplier = new MatrixMultiply();
-    System.out.println("First matrix");
-    double[][] matrixOne = reader.readMatrix();
-    System.out.println("Second matrix");
-    double[][] matrixTwo = reader.readMatrix();
+    MatrixPrinter printer = new MatrixPrinter();
     double[][] resultMatrix;
+    double[][] matrixOne;
+    double[][] matrixTwo;
     try {
+      System.out.println("First matrix");
+      matrixOne = reader.readMatrix();
+      System.out.println("Second matrix");
+      matrixTwo = reader.readMatrix();
       resultMatrix = multiplier.doMultiply(matrixOne, matrixTwo);
       System.out.println("Result matrix: ");
-      for (int i = 0; i < resultMatrix.length; i++) {
-        for (int j = 0; j < resultMatrix[i].length; j++) {
-          System.out.print(resultMatrix[i][j] + " ");
-        }
-        System.out.println();
-      }
-    } catch (ArithmeticException ex){
+      printer.printMatrix(resultMatrix);
+    } catch (NumberFormatException ex) {
+      System.out.println("Error! Too much incorrect inputs");
+    } catch (InvalidArgumentException ex) {
       System.out.println(ex.getLocalizedMessage());
     }
   }
