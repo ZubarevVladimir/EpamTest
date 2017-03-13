@@ -1,6 +1,7 @@
 package com.github.zubarevladimir;
 
 import com.github.zubarevladimir.Format.FormatData;
+import java.util.Calendar;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ public class Main {
     Scanner in = new Scanner(System.in);
     String userDateFormat = in.nextLine();
     FormatData format = new FormatData();
-    userDateFormat = format.doDateFormat(userDateFormat);
-    System.out.println(userDateFormat);
+    Calendar date = Calendar.getInstance();
+    System.out.println(format.formatDateToUserFormat(userDateFormat,date));
   }
 }
