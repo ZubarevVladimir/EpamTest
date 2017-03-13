@@ -1,74 +1,79 @@
 package com.github.zubarevladimir.Format;
 
-import com.github.zubarevladimir.Format.DateContainer.DateVariables;
+import com.github.zubarevladimir.Format.DataContainer.DateFactory;
 import java.util.*;
 
 /**
- * Contains formating methods.
+ * Contains formatting methods.
  */
 public class FormatData {
 
   /**
-   * Formats date according to given format.
+   * Formats date according to given user format.
    *
-   * @param userDateFormat format entered by user.
-   * @return String - date in given format.
+   * @param userDateFormat user-entered format.
+   * @return String - current date and time in given format.
    */
-  public String doDateFormat(String userDateFormat) {
-    DateVariables data = new DateVariables();
-    Map<String, String> dateMap = data.getDateVariables();
-    userDateFormat = formatDateToUserFormat(dateMap, userDateFormat);
+  public String formatDateToUserFormat(String userDateFormat, Calendar date) {
+    DateFactory dateFactory = new DateFactory();
+    Map<String, String> dateMap = dateFactory.createMapOfPatterns(date);
+    List<String> patternList = prioritySort(getLisUserFormatPatterns(userDateFormat));
+    userDateFormat = substituteDateAccordingToFormat(patternList, dateMap, userDateFormat);
     return userDateFormat;
   }
 
   /**
-   * Replace format abbreviation to date value.
+   * Get list, contains patterns, which entered by user.
    *
-   * @param dateMap date and time variables container.
-   * @param userDateFormat format entered by user.
-   * @return String - date in given format.
+   * @param userDateFormat user-entered format.
+   * @return List - contains patterns, which entered by user.
    */
-  private String formatDateToUserFormat(Map<String, String> dateMap, String userDateFormat) {
-    userDateFormat = userDateFormat.replaceAll("[f]", dateMap.get("f"));
-    userDateFormat = userDateFormat.replaceAll("[F]", dateMap.get("F"));
-    userDateFormat = userDateFormat.replaceAll("[s]", dateMap.get("s"));
-    userDateFormat = userDateFormat.replaceAll("[c]{2}", dateMap.get("cc"));
-    userDateFormat = userDateFormat.replaceAll("[K]", dateMap.get("K"));
+  private List<String> getLisUserFormatPatterns(String userDateFormat) {
+    List<String> patternList = new ArrayList<>();
+    for (String pattern : userDateFormat.split("[:]|[/]|[ ]")) {
+      patternList.add(pattern);
+    }
+    return patternList;
+  }
 
-    userDateFormat = userDateFormat.replaceAll("[m]{2}", dateMap.get("mm"));
-    userDateFormat = userDateFormat.replaceAll("[m]", dateMap.get("m"));
-
-    userDateFormat = userDateFormat.replaceAll("[H]{2}", dateMap.get("HH"));
-    userDateFormat = userDateFormat.replaceAll("[h]{2}", dateMap.get("hh"));
-    userDateFormat = userDateFormat.replaceAll("[H]", dateMap.get("H"));
-    userDateFormat = userDateFormat.replaceAll("[h]", dateMap.get("h"));
-
-    userDateFormat = userDateFormat.replaceAll("[y]{5}", dateMap.get("yyyyy"));
-    userDateFormat = userDateFormat.replaceAll("[y]{4}", dateMap.get("yyyy"));
-    userDateFormat = userDateFormat.replaceAll("[y]{3}", dateMap.get("yyy"));
-    userDateFormat = userDateFormat.replaceAll("[y]{2}", dateMap.get("yy"));
-    userDateFormat = userDateFormat.replaceAll("[y]", dateMap.get("y"));
-
-    userDateFormat = userDateFormat.replaceAll("[z]{3}", dateMap.get("zzz"));
-    userDateFormat = userDateFormat.replaceAll("[z]{2}", dateMap.get("zz"));
-    userDateFormat = userDateFormat.replaceAll("[z]", dateMap.get("z"));
-
-    userDateFormat = userDateFormat.replaceAll("[M]{4}", dateMap.get("MMMM"));
-    userDateFormat = userDateFormat.replaceAll("[M]{3}", dateMap.get("MMM"));
-    userDateFormat = userDateFormat.replaceAll("[M]{2}", dateMap.get("MM"));
-    userDateFormat = userDateFormat.replaceAll("[M]", dateMap.get("M"));
-
-    userDateFormat = userDateFormat.replaceAll("[d]{4}", dateMap.get("dddd"));
-    userDateFormat = userDateFormat.replaceAll("[d]{3}", dateMap.get("ddd"));
-    userDateFormat = userDateFormat.replaceAll("[d]{2}", dateMap.get("dd"));
-    userDateFormat = userDateFormat.replaceAll("[ ][d][ ]", " " + dateMap.get("d") + " ");
-    userDateFormat = userDateFormat.replaceAll("[\\W][d]", "/" + dateMap.get("d"));
-    userDateFormat = userDateFormat.replaceAll("[d][\\W]", dateMap.get("d") + "/");
-
-    userDateFormat = userDateFormat.replaceAll("[t]{2}", dateMap.get("tt"));
-    userDateFormat = userDateFormat.replaceAll("[ ][t][ ]", " " + dateMap.get("t") + " ");
-    userDateFormat = userDateFormat.replaceAll("[\\W][t]", ":" + dateMap.get("t"));
-    userDateFormat = userDateFormat.replaceAll("[\\W][t][\\W]", ":"+dateMap.get("t") + ":");
+  /**
+   * Substitute current date according to given user-entered format.
+   *
+   * @param patternList contains patterns, which entered by user.
+   * @param dateMap contains all information about current time and date and linked patterns.
+   * @param userDateFormat user-entered format.
+   * @return String current date and time in given format.
+   */
+  private String substituteDateAccordingToFormat(List<String> patternList,
+      Map<String, String> dateMap, String userDateFormat) {
+    for (String pattern : patternList) {
+      if (dateMap.containsKey(pattern)) {
+        userDateFormat = userDateFormat.replaceAll(pattern, dateMap.get(pattern));
+      }
+    }
     return userDateFormat;
+  }
+
+  /**
+   * Sort given list according to priority substitute.
+   *
+   * @param patternList contains patterns, which entered by user.
+   * @return List - contains entered by user patterns
+   */
+  private List<String> prioritySort(List<String> patternList) {
+    Collections.sort(patternList, new Comparator<String>() {
+      @Override
+      public int compare(String o1, String o2) {
+        return (o2.codePointBefore(1) - o1.codePointBefore(1)) + (o2.length() - o1.length());
+      }
+    });
+    for (int i = 0; i < patternList.size(); i++) {
+      if (patternList.get(i).equals("tt")) {
+        patternList.add(0, patternList.remove(i));
+      } else if (patternList.get(i).equals("t")) {
+        patternList.add(1, patternList.remove(i));
+      }
+    }
+    return patternList;
   }
 }
