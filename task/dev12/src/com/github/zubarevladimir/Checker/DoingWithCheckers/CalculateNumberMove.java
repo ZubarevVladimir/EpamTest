@@ -1,4 +1,6 @@
-package com.github.zubarevladimir.Checker;
+package com.github.zubarevladimir.Checker.DoingWithCheckers;
+
+import com.github.zubarevladimir.Checker.Checker;
 
 /**
  * Contains methods for calculate number moves to go from start to finish for checker.
@@ -34,9 +36,9 @@ public class CalculateNumberMove {
    */
   private int calculateForWhite(Checker checker) throws IllegalArgumentException {
     int numberMoves;
-    if (checker.getyStop() > checker.getyStart() && Math.abs(
-        (checker.getyStop() - checker.getyStart())) > (checker.getxStop() - checker.getxStart())) {
-      numberMoves = (checker.getyStop() - checker.getyStart());
+    if (checker.getYStop() > checker.getYStart() && Math.abs(
+        (checker.getYStop() - checker.getYStart())) > (checker.getXStop() - checker.getXStart())) {
+      numberMoves = (checker.getYStop() - checker.getYStart());
     } else {
       throw new IllegalArgumentException(
           checker.getStartCoordinate().toUpperCase() + MESSAGE_MOVE_ERROR + checker
@@ -54,10 +56,9 @@ public class CalculateNumberMove {
    */
   private int calculateForBlack(Checker checker) throws IllegalArgumentException {
     int numberMoves;
-    if (checker.getyStart() > checker.getyStop() && Math.abs(
-        (checker.getyStart() - checker.getyStop()) / (checker.getxStart() - checker.getxStop()))
-        >= 1) {
-      numberMoves = (checker.getyStart() - checker.getyStop());
+    if (checker.getYStart() > checker.getYStop() && Math.abs(
+        (checker.getYStart() - checker.getYStop())) > (checker.getXStart() - checker.getXStop())) {
+      numberMoves = (checker.getYStart() - checker.getYStop());
     } else {
       throw new IllegalArgumentException(
           checker.getStartCoordinate().toUpperCase() + MESSAGE_MOVE_ERROR + checker

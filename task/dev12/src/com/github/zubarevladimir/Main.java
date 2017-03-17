@@ -1,8 +1,8 @@
 package com.github.zubarevladimir;
 
-import com.github.zubarevladimir.Checker.CalculateNumberMove;
+import com.github.zubarevladimir.Checker.DoingWithCheckers.CalculateNumberMove;
 import com.github.zubarevladimir.Checker.Checker;
-import com.github.zubarevladimir.Checker.InputChecker;
+import com.github.zubarevladimir.Checker.DoingWithCheckers.InputChecker;
 import com.github.zubarevladimir.Validator.CheckerValidator;
 
 /**

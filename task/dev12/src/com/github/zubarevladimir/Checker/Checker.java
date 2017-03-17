@@ -11,78 +11,90 @@ public class Checker {
   private int yStop;
   private int xStart;
   private int xStop;
-  private final String MESSAGE_INCORRECT_COORDINATE =  "Incorrect checker's coordinate: ";
-  private final String MESSAGE_INCORRECT_TYPE = "Incorrect checker's coordinate: ";
 
-  public void setyStart(int yStart, CheckerValidator validator) {
-    if (validator.validateCoordinate(yStart)) {
-      this.yStart = yStart;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + yStart);
-    }
+  private enum Coordinates {
+    A, B, C, D, E, F, G, H
   }
 
-  public void setyStop(int yStop, CheckerValidator validator) {
-    if (validator.validateCoordinate(yStop)) {
-      this.yStop = yStop;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + yStop);
-    }
+  private void setYStart(int yStart) {
+    this.yStart = yStart;
   }
 
-  public void setxStart(int xStart, CheckerValidator validator) {
-    if (validator.validateCoordinate(xStart)) {
-      this.xStart = xStart;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + xStart);
-    }
+  private void setYStop(int yStop) {
+    this.yStop = yStop;
   }
 
-  public void setxStop(int xStop, CheckerValidator validator) {
-    if (validator.validateCoordinate(xStop)) {
-      this.xStop = xStop;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + xStop);
-    }
+  private void setXStart(int xStart) {
+    this.xStart = xStart;
+  }
+
+  private void setXStop(int xStop) {
+    this.xStop = xStop;
   }
 
   public void setType(String type, CheckerValidator validator) throws IllegalArgumentException {
     if (validator.validateType(type)) {
       this.type = type;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_TYPE + type);
     }
   }
 
-  public void setStartCoordinate(String startCoordinate, CheckerValidator validator) {
+  public void setStartCoordinate(String startCoordinate, CheckerValidator validator)
+      throws IllegalArgumentException {
     if (validator.validateCoordinate(startCoordinate)) {
       this.startCoordinate = startCoordinate;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + startCoordinate);
+      this.setXStart(getXCoordinates(startCoordinate));
+      this.setYStart(getYCoordinates(startCoordinate));
     }
   }
 
-  public void setStopCoordinate(String stopCoordinate, CheckerValidator validator) {
+  public void setStopCoordinate(String stopCoordinate, CheckerValidator validator)
+      throws IllegalArgumentException {
     if (validator.validateCoordinate(stopCoordinate)) {
       this.stopCoordinate = stopCoordinate;
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + stopCoordinate);
+      this.setXStop(getXCoordinates(stopCoordinate));
+      this.setYStop(getYCoordinates(stopCoordinate));
     }
   }
 
-  public int getyStart() {
+  /**
+   * Get y-coordinate from all coordinate.
+   *
+   * @param coordinates checker's coordinates.
+   * @return int - numerical y-coordinate.
+   */
+  private int getYCoordinates(String coordinates) {
+    return Integer.parseInt(coordinates.substring(1));
+  }
+
+  /**
+   * Represent letter-coordinate like number.
+   *
+   * @param coordinates checker's coordinates.
+   * @return int - numerical x-coordinate.
+   */
+  private int getXCoordinates(String coordinates) {
+    int coordinate = 0;
+    for (int i = 0; i < Coordinates.values().length; i++) {
+      if (coordinates.substring(0, 1).equals(Coordinates.values()[i].name())) {
+        coordinate = i + 1;
+      }
+    }
+    return coordinate;
+  }
+
+  public int getYStart() {
     return yStart;
   }
 
-  public int getyStop() {
+  public int getYStop() {
     return yStop;
   }
 
-  public int getxStart() {
+  public int getXStart() {
     return xStart;
   }
 
-  public int getxStop() {
+  public int getXStop() {
     return xStop;
   }
 
