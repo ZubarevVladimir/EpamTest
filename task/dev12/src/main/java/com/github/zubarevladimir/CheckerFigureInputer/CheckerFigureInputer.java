@@ -12,7 +12,9 @@ import java.util.Scanner;
 public class CheckerFigureInputer {
 
   private CheckerFigure inputsCheckerFigure;
-  private final int MAX_INCORRECT_INPUTS = 5;
+  private CheckerValidator validator;
+  private final String TYPE_WHITE = "white";
+  private final String TYPE_BLACK = "black";
   private final String MESSAGE_INPUT_START_COORDINATE = "Input start coordinate";
   private final String MESSAGE_INPUT_STOP_COORDINATE = "Input stop coordinate";
   private final String MESSAGE_INPUT_TYPE = "Enter type (white/black): ";
@@ -20,43 +22,47 @@ public class CheckerFigureInputer {
   private final String MESSAGE_INPUT_CORRECT_TYPE = "Input correct type (white/black): ";
   private final String MESSAGE_INPUT_CORRECT_COORDINATE = "Input correct coordinate: ";
 
+  public CheckerFigureInputer(CheckerValidator validator) {
+    this.validator = validator;
+  }
+
   /**
-   * Read to console inputs parameters and represent it like checker.
+   * Inputs checker.
    *
-   * @param validator contains methods for validate setted variables.
+   * @param maximalNumberIncorrectInputs contains maximal number incorrect user's inputs.
    * @return CheckerFigure - inputs checker.
    * @throws NumberInputsException if number incorrect user's inputs more then maximal number.
    */
-  public CheckerFigure CheckerInput(CheckerValidator validator) throws NumberInputsException {
+  public CheckerFigure CheckerInput(int maximalNumberIncorrectInputs) throws NumberInputsException {
     Scanner in = new Scanner(System.in);
-    String inputsType = inputType(in, validator);
-    if (inputsType.equals("black")) {
+    String inputsType = inputType(in, maximalNumberIncorrectInputs);
+    if (inputsType.equals(TYPE_BLACK)) {
       inputsCheckerFigure = new BlackChecker();
-    } else if (inputsType.equals("white")) {
+    } else if (inputsType.equals(TYPE_WHITE)) {
       inputsCheckerFigure = new WhiteChecker();
     }
     System.out.println(MESSAGE_INPUT_START_COORDINATE);
-    String startCoordinate = inputCoordinate(in, validator);
+    String startCoordinate = inputCoordinate(in, maximalNumberIncorrectInputs);
     inputsCheckerFigure.getStartCoordinate().setCoordinates(startCoordinate, validator);
     System.out.println(MESSAGE_INPUT_STOP_COORDINATE);
-    String stopCoordinate = inputCoordinate(in, validator);
+    String stopCoordinate = inputCoordinate(in, maximalNumberIncorrectInputs);
     inputsCheckerFigure.getStopCoordinate().setCoordinates(stopCoordinate, validator);
     return inputsCheckerFigure;
   }
 
-
   /**
-   * Inputs checker's type.
+   * Input checker's type.
    *
    * @param in variable for console inputs.
-   * @param validator contains methods for validate setted variables.
+   * @param maximalNumberIncorrectInputs contains maximal number incorrect user's inputs.
    * @return String - inputs checker's type(white or black).
    * @throws NumberInputsException if number incorrect user's inputs more then maximal number.
    */
-  private String inputType(Scanner in, CheckerValidator validator) throws NumberInputsException {
+  private String inputType(Scanner in, int maximalNumberIncorrectInputs)
+      throws NumberInputsException {
     System.out.print(MESSAGE_INPUT_TYPE);
     String type;
-    int errorCounter = 0;
+    int errorInputsCounter = 0;
     while (true) {
       type = in.nextLine().replaceAll(" ", "").toLowerCase();
       try {
@@ -64,9 +70,9 @@ public class CheckerFigureInputer {
           break;
         }
       } catch (IllegalArgumentException ex) {
-        errorCounter++;
-        if (errorCounter == MAX_INCORRECT_INPUTS) {
-          throw new NumberInputsException(MESSAGE_INCORRECT_INPUT + errorCounter);
+        errorInputsCounter++;
+        if (errorInputsCounter == maximalNumberIncorrectInputs) {
+          throw new NumberInputsException(MESSAGE_INCORRECT_INPUT + errorInputsCounter);
         }
         System.out.println(ex.getMessage());
         System.out.print(MESSAGE_INPUT_CORRECT_TYPE);
@@ -79,14 +85,14 @@ public class CheckerFigureInputer {
    * Inputs checker's coordinate.
    *
    * @param in variable for console inputs.
-   * @param validator contains methods for validate setted variables.
+   * @param maximalNumberIncorrectInputs contains maximal number incorrect user's inputs.
    * @return String - inputs checker's coordinate.
    * @throws NumberInputsException if number incorrect user's inputs more then maximal number.
    */
-  private String inputCoordinate(Scanner in, CheckerValidator validator)
+  private String inputCoordinate(Scanner in, int maximalNumberIncorrectInputs)
       throws NumberInputsException {
     String coordinate;
-    int errorCounter = 0;
+    int errorInputsCounter = 0;
     while (true) {
       coordinate = in.nextLine().replaceAll(" ", "").toUpperCase();
       try {
@@ -94,9 +100,9 @@ public class CheckerFigureInputer {
           break;
         }
       } catch (IllegalArgumentException ex) {
-        errorCounter++;
-        if (errorCounter == MAX_INCORRECT_INPUTS) {
-          throw new NumberInputsException(MESSAGE_INCORRECT_INPUT + errorCounter);
+        errorInputsCounter++;
+        if (errorInputsCounter == maximalNumberIncorrectInputs) {
+          throw new NumberInputsException(MESSAGE_INCORRECT_INPUT + errorInputsCounter);
         }
         System.out.println(ex.getMessage());
         System.out.print(MESSAGE_INPUT_CORRECT_COORDINATE);

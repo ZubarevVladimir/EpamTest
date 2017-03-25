@@ -15,10 +15,11 @@ public class Main {
    */
   public static void main(String[] args) {
     try {
-      CheckerFigureInputer inputer = new CheckerFigureInputer();
+      int maximalNumberIncorrectInputs = 5;
       CheckerValidator validator = new CheckerValidator();
-      CheckerFigure checkerFigure = inputer.CheckerInput(validator);
-      System.out.printf("Necessary number moves: %s", checkerFigure.calculateNumberMove());
+      CheckerFigureInputer inputer = new CheckerFigureInputer(validator);
+      CheckerFigure checkerFigure = inputer.CheckerInput(maximalNumberIncorrectInputs);
+      System.out.printf("Necessary steps: %s", checkerFigure.calculateNumberSteps());
     } catch (Exception ex) {
       System.out.println(ex.getMessage());
     }

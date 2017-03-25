@@ -13,6 +13,12 @@ public class Coordinate {
     A, B, C, D, E, F, G, H
   }
 
+  public Coordinate() {
+    this.coordinate = "";
+    this.xCoordinate = 0;
+    this.yCoordinate = 0;
+  }
+
   /**
    * Set X and Y coordinates according to given string coordinates.
    *
@@ -23,12 +29,10 @@ public class Coordinate {
   public void setCoordinates(String stringCoordinate, CheckerValidator validator)
       throws IllegalArgumentException {
     if (validator.validateCoordinate(stringCoordinate)) {
-      coordinate = stringCoordinate;
       xCoordinate = getXCoordinate(stringCoordinate);
       yCoordinate = getYCoordinate(stringCoordinate);
-    } else {
-      throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + stringCoordinate);
-    }
+      coordinate = stringCoordinate;
+    } 
   }
 
   /**
@@ -39,7 +43,8 @@ public class Coordinate {
    * @return int - Y numerical coordinate.
    */
   private int getYCoordinate(String coordinates) {
-    return Integer.parseInt(coordinates.substring(1));
+    String yCoordinate = coordinates.substring(1);
+    return Integer.parseInt(yCoordinate);
   }
 
   /**
@@ -51,8 +56,9 @@ public class Coordinate {
    */
   private int getXCoordinate(String coordinates) {
     int coordinate = 0;
+    String xCoordinateLetter = coordinates.substring(0, 1);
     for (int i = 0; i < Coordinates.values().length; i++) {
-      if (coordinates.substring(0, 1).equals(Coordinates.values()[i].name())) {
+      if (xCoordinateLetter.toUpperCase().equals(Coordinates.values()[i].name())) {
         coordinate = i + 1;
       }
     }

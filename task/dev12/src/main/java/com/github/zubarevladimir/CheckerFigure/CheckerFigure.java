@@ -8,7 +8,7 @@ public abstract class CheckerFigure {
   private Coordinate stopCoordinate = new Coordinate();
   private String MESSAGE_MOVE_ERROR = "Checker hasn't move to ";
 
-  protected String getMESSAGE_MOVE_ERROR(){
+  protected String getMessageMoveError(){
     return MESSAGE_MOVE_ERROR;
   }
 
@@ -21,9 +21,12 @@ public abstract class CheckerFigure {
   }
 
   /**
+   * Calculate number steps, for move to necessary coordinate.
    *
-   * @return
-   * @throws IllegalCheckersMoveException
+   * @return int - necessary number steps.
+   * @throws IllegalCheckersMoveException if checker can't move from start coordinate to stop
+   * coordinate.
    */
-  public abstract int calculateNumberMove() throws IllegalCheckersMoveException;
+  public abstract int calculateNumberSteps() throws IllegalCheckersMoveException;
 }
+

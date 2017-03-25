@@ -20,7 +20,6 @@ public class CheckerValidator {
    * @throws IllegalArgumentException if get incorrect argument.
    */
   public boolean validateType(String type) throws IllegalArgumentException {
-
     if (type.toLowerCase().equals(TYPE_WHITE) || type.toLowerCase().equals(TYPE_BLACK)) {
       return true;
     } else {
@@ -43,5 +42,4 @@ public class CheckerValidator {
       throw new IllegalArgumentException(MESSAGE_INCORRECT_COORDINATE + coordinate);
     }
   }
-
 }

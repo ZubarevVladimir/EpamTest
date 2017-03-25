@@ -3,25 +3,27 @@ package com.github.zubarevladimir.CheckerFigure;
 public class WhiteChecker extends CheckerFigure {
 
   /**
+   * Calculate number steps, for move to necessary coordinate.
    *
-   * @return
-   * @throws IllegalCheckersMoveException
+   * @return int - necessary number steps.
+   * @throws IllegalCheckersMoveException if checker can't move from start coordinate to stop
+   * coordinate.
    */
   @Override
-  public int calculateNumberMove() throws IllegalCheckersMoveException{
-    int numberMoves;
+  public int calculateNumberSteps() throws IllegalCheckersMoveException{
+    int numberSteps;
     if (super.getStopCoordinate().getYCoordinate() > super.getStartCoordinate().getYCoordinate()
         &&
         (super.getStopCoordinate().getYCoordinate() - super.getStartCoordinate().getYCoordinate())
         >=
         (super.getStopCoordinate().getXCoordinate() - super.getStartCoordinate()
             .getXCoordinate())) {
-      numberMoves = (super.getStopCoordinate().getYCoordinate() - super.getStartCoordinate()
+      numberSteps = (super.getStopCoordinate().getYCoordinate() - super.getStartCoordinate()
           .getYCoordinate());
     } else {
-      throw new IllegalCheckersMoveException(super.getMESSAGE_MOVE_ERROR() + super
+      throw new IllegalCheckersMoveException(super.getMessageMoveError() + super
               .getStopCoordinate().getCoordinate().toUpperCase());
     }
-    return numberMoves;
+    return numberSteps;
   }
 }
