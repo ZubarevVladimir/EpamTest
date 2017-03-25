@@ -1,8 +1,8 @@
 package com.github.zubarevladimir.CheckerFigureInputer;
 
-import com.github.zubarevladimir.Checker.BlackChecker;
-import com.github.zubarevladimir.Checker.CheckerFigure;
-import com.github.zubarevladimir.Checker.WhiteChecker;
+import com.github.zubarevladimir.CheckerFigure.BlackChecker;
+import com.github.zubarevladimir.CheckerFigure.CheckerFigure;
+import com.github.zubarevladimir.CheckerFigure.WhiteChecker;
 import com.github.zubarevladimir.Validator.CheckerValidator;
 import java.util.Scanner;
 

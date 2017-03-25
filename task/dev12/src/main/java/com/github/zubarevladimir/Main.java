@@ -1,6 +1,6 @@
 package com.github.zubarevladimir;
 
-import com.github.zubarevladimir.Checker.CheckerFigure;
+import com.github.zubarevladimir.CheckerFigure.CheckerFigure;
 import com.github.zubarevladimir.CheckerFigureInputer.CheckerFigureInputer;
 import com.github.zubarevladimir.Validator.CheckerValidator;
 

@@ -1,7 +1,7 @@
 package com.github.zubarevladimir.Validator;
 
 /**
- * Contains methods for validate variables class Checker.
+ * Contains methods for validate variables class CheckerFigure.
  */
 public class CheckerValidator {
 
@@ -16,7 +16,7 @@ public class CheckerValidator {
    * Validate given checker's type.
    *
    * @param type validated type.
-   * @return boolean true - if given type match checker's type.
+   * @return boolean true - if given type match checker possible type.
    * @throws IllegalArgumentException if get incorrect argument.
    */
   public boolean validateType(String type) throws IllegalArgumentException {
@@ -32,7 +32,7 @@ public class CheckerValidator {
    * Validate given checker's coordinate.
    *
    * @param coordinate validated coordinate.
-   * @return boolean true - if given coordinate match checker's coordinate.
+   * @return boolean true - if given coordinate match checker possible coordinate.
    * @throws IllegalArgumentException if get incorrect argument.
    */
   public boolean validateCoordinate(String coordinate) throws IllegalArgumentException {

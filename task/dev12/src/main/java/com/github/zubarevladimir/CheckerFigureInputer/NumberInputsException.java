@@ -2,8 +2,8 @@ package com.github.zubarevladimir.CheckerFigureInputer;
 
 class NumberInputsException extends Exception {
 
-  NumberInputsException(String s) {
-    super(s);
+  NumberInputsException(String message) {
+    super(message);
   }
 }
 
