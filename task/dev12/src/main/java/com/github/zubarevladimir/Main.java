@@ -1,8 +1,7 @@
 package com.github.zubarevladimir;
 
-import com.github.zubarevladimir.Checker.DoingWithCheckers.CalculateNumberMove;
-import com.github.zubarevladimir.Checker.Checker;
-import com.github.zubarevladimir.Checker.DoingWithCheckers.InputChecker;
+import com.github.zubarevladimir.CheckerFigure.CheckerFigure;
+import com.github.zubarevladimir.CheckerFigureInputer.CheckerFigureInputer;
 import com.github.zubarevladimir.Validator.CheckerValidator;
 
 /**
@@ -16,14 +15,13 @@ public class Main {
    */
   public static void main(String[] args) {
     try {
+      int maximalNumberIncorrectInputs = 5;
       CheckerValidator validator = new CheckerValidator();
-      Checker checker = new Checker();
-      InputChecker setter = new InputChecker();
-      setter.setInputsCoordinates(checker,validator);
-      CalculateNumberMove counter = new CalculateNumberMove();
-      System.out.printf("Necessary number moves: %s", counter.getNumberMove(checker));
-    } catch (IllegalArgumentException ex) {
-      System.out.println(ex.getLocalizedMessage());
+      CheckerFigureInputer inputer = new CheckerFigureInputer(validator);
+      CheckerFigure checkerFigure = inputer.CheckerInput(maximalNumberIncorrectInputs);
+      System.out.printf("Necessary steps: %s", checkerFigure.calculateNumberSteps());
+    } catch (Exception ex) {
+      System.out.println(ex.getMessage());
     }
   }
 }
