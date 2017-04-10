@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestSuite">
+  <test name="ChromeTest">
+    <parameter name="propertyKey" value="webdriver.chrome.driver"/>
+    <parameter name="propertyValue" value="src/main/resources/chromedriver.exe"/>
+    <parameter name="driver" value="chrome"/>
+    <classes>
+      <class name="MailRuTest">
+      </class>
+    </classes>
+  </test>
+  <test name="FirefoxTest">
+    <parameter name="propertyKey" value="webdriver.gecko.driver"/>
+    <parameter name="propertyValue" value="src/main/resources/geckodriver.exe"/>
+    <parameter name="driver" value="firefox"/>
+    <classes>
+      <class name="MailRuTest">
+      </class>
+    </classes>
+  </test>
+</suite>
