@@ -1,0 +1,9 @@
++ [open "http:\\www.google.com" "3"] 5.56
++ [checkPageTitle "Google"] 0.012
++ [checkPageContains "Поиск"] 0.073
+! [checkLinkPresentByHref "/images/googleg_lodp.ico"] 0.043
++ [checkLinkPresentByName "shortcut icon"] 0.046
+Total tests: 5
+Passed/Failed: 4/1
+Total time: 5.734
+Average time: 1.1468

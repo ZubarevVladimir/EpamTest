@@ -1,0 +1,5 @@
+open "http:\\www.google.com" "3"
+checkPageTitle "Google"
+checkPageContains "Поиск"
+checkLinkPresentByHref "/images/googleg_lodp.ico"
+checkLinkPresentByName "shortcut icon"
