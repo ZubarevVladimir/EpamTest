@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
  */
 public class TestPage {
 
-  private static WebDriver driver;
+  private WebDriver driver;
 
   public TestPage(WebDriver driver) {
     this.driver = driver;
@@ -26,7 +26,7 @@ public class TestPage {
   public WebElement getLinkPresentByName(String linkName) {
     WebElement searchElement;
     try {
-      searchElement = driver.findElement(By.xpath("//link[@rel=\"" + linkName + "\"]"));
+      searchElement = driver.findElement(By.xpath("//a[text()=\"" + linkName + "\"]"));
     } catch (NoSuchElementException e) {
       searchElement = null;
     }
@@ -86,7 +86,7 @@ public class TestPage {
   public WebElement getLinkPresentByHref(String href) {
     WebElement searchElement;
     try {
-      searchElement = driver.findElement(By.xpath("//link[@href=\"" + href + "\"]"));
+      searchElement = driver.findElement(By.xpath("//a[@href=\"" + href + "\"]"));
     } catch (NoSuchElementException e) {
       searchElement = null;
     }
