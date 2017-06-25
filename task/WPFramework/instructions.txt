@@ -1,0 +1,36 @@
+correctauthorization admin | 12345
+correctauthorization    admin    |    12345
+incorrectauthorization admin | 123455
+incorrectauthorization 12345 | admin
+incorrectauthorization !@#$% | 123455
+incorrectauthorization admin | !@#$%
+createpost Test post | Test content
+deletepost Test post
+createpost !@#$%^& | Test content
+deletepost !@#$%^&
+createpost Test post | !@#$%^&
+deletepost Test post
+createpost TEST POST | Test content
+deletepost TEST POST
+createpage Test post | Test content
+deletepage Test post
+createpage !@#$%^& | Test content
+deletepage !@#$%^&
+createpage Test post | !@#$%^&
+deletepage Test post
+createpage TEST POST | Test content
+deletepage TEST POST
+createpost Test posr for comment | Anything
+createcomment Test posr for comment | There is my comment
+deletecomment Test posr for comment | There is my comment
+createcomment Test posr for comment | There is my comment number 2
+deletecomment Test posr for comment | There is my comment number 2
+deletepost Test posr for comment
+createpost Test post | Sometext
+createcomment Test post | !@#$%
+createcomment Test post | ABC
+createcomment Test post | qwertyuiopasfghjklzxcvbnmqwertyuiopasfghjklzxcvbnmqwertyuiopasfghjklzxcvbnmqwertyuiopasfghjklzxcvbnm
+deletecomment Test post | !@#$%
+deletecomment Test post | ABC
+deletecomment Test post | qwertyuiopasfghjklzxcvbnmqwertyuiopasfghjklzxcvbnmqwertyuiopasfghjklzxcvbnmqwertyuiopasfghjklzxcvbnm
+deletepost Test post
