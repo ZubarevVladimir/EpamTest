@@ -12,7 +12,6 @@ public class NotebookManager {
 
   private static NotebookManager manager;
   private ICommand command;
-  private List<ICommand> commandList = new ArrayList<>();
 
   private NotebookManager() {
   }
@@ -25,23 +24,13 @@ public class NotebookManager {
   }
 
   /**
-   * Call creator for create command according to given string and execute this command.
-   * If given command is 'undo', undo last command.
+   * Initialize command according to given string and execute it.
    *
-   * @param commandParameters command with parameters, which need execute.
+   * @param commandParameters command which need execute.
    */
   public void executeCommand(String commandParameters) {
-    if (!commandParameters.equals("undo")) {
       CommandCreator creator = new CommandCreator();
       command = creator.getCommand(commandParameters);
-      command.execute();
-      commandList.add(command);
-    } else if (commandParameters.equals("undo")){
-      manager.getCommandList().get(manager.getCommandList().size()-1).undo();
-    }
-  }
-
-  public List<ICommand> getCommandList() {
-    return commandList;
+      command.Execute();
   }
 }

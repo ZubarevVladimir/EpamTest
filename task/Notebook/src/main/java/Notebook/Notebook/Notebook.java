@@ -46,16 +46,28 @@ public class Notebook {
     noteList.add(new Note(idGenerator.getID(), title, text, authorName, authorSurname));
   }
 
+  public void addNote(int id,String title, String text, String authorName, String authorSurname) {
+    noteList.add(new Note(id, title, text, authorName, authorSurname));
+  }
+
+  public void addNote(Note note) {
+    noteList.add(note);
+  }
+
   /**
    * Delete note with given id.
    *
    * @param id id deleted note.
    */
   public void deleteNote(int id) {
-    noteList.remove(id);
+    for (Note note : noteList) {
+      if (note.getId() == id) {
+        noteList.remove(note);
+      }
+    }
   }
 
-  public void deleteLastNote() {
-    noteList.remove(noteList.size() - 1);
+  public void deleteNote(Note deletedNote) {
+    noteList.remove(deletedNote);
   }
 }

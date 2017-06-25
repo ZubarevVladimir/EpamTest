@@ -24,17 +24,4 @@ public class NotebookConsoleViewer {
       System.out.println("Note: " + listsNote.toString());
     }
   }
-
-  /**
-   * Print note with given id.
-   *
-   * @param id - printed note id.
-   */
-  public void print(int id) {
-    for (Note listsNote : notebook.getNoteList()) {
-      if (listsNote.getId() == id) {
-        System.out.println(listsNote.toString());
-      }
-    }
-  }
 }
